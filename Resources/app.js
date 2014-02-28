@@ -1,23 +1,24 @@
 // this sets the background color of the master UIView (when there are no windows/tab groups on it)
-Titanium.UI.setBackgroundColor('#000');
+//Titanium.UI.setBackgroundColor('#000');
+//Titanium.UI.setBackgroundImage('bg-content01.jpg');
 
 //
 // create base UI tab and root window
 //
 var win1 = Titanium.UI.createWindow({  
     //title:'Tab 1',
-    backgroundColor:'#000'
+    //backgroundColor:'#000',
+    backgroundImage:'bg-content_portrait.jpg',
 });
 
-var label1 = Titanium.UI.createLabel({
-	color:'#999',
-	text:'I am Window 1',
-	font:{fontSize:20,fontFamily:'Helvetica Neue'},
-	textAlign:'center',
-	width:'auto'
+Ti.Gesture.addEventListener('orientationchange', function(e) {
+  if (e.orientation == Titanium.UI.LANDSCAPE_RIGHT || e.orientation == Titanium.UI.LANDSCAPE_LEFT) {
+    win1.backgroundImage = "bg-content01.jpg";
+  } else {
+    win1.backgroundImage = "bg-content_portrait.jpg";
+  }
 });
 
-//win1.add(label1);
 
 //TABLEVIEW
 var tbl = Ti.UI.createTableView({top:10,separatorColor :'transparent',bottom : 50});
@@ -26,7 +27,7 @@ function createRow(items)
 {
 	var tablerow = Ti.UI.createTableViewRow({
 			height: 45,
-			selectedBackgroundColor : 'transparent',
+			backgroundSelectedColor : 'transparent',
 			id : items.id,
 	});
 	var h_height = 40;
@@ -120,50 +121,50 @@ self.add(tbl);
 //END TABLEVIEW
 
 var btn1 = Ti.UI.createButton({
-    top : 10,
-    left : 80,
-    height : 250,
-    width : 250,
+    top : '10%',
+    left : '10%',
+    height : 99,
+    width : 99,
     title : '',
     backgroundImage : 'auto_white.png',
 });
 var btn2 = Ti.UI.createButton({
-    top : 10,
-    right : 80,
-    height : 250,
-    width : 250,
+    top : '10%',
+    right : '10%',
+    height : 99,
+    width : 99,
     title : '',
     backgroundImage : 'moto_white.png',
 });
 var btn3 = Ti.UI.createButton({
-    top : 300,
-    left : 80,
-    height : 250,
-    width : 250,
+    top : '40%',
+    left : '10%',
+    height : 99,
+    width : 99,
     title : '',
     backgroundImage : 'scooter_white.png',
 });
 var btn4 = Ti.UI.createButton({
-    top : 300,
-    right : 80,
-    height : 250,
-    width : 250,
+    top : '40%',
+    right : '10%',
+    height : 99,
+    width : 99,
     title : '',
     backgroundImage : 'naked_white.png',
 });
 var btn5 = Ti.UI.createButton({
-    top : 600,
-    left : 80,
-    height : 250,
-    width : 250,
+    top : '70%',
+    left : '10%',
+    height : 99,
+    width : 99,
     title : '',
     backgroundImage : 'qrcode_white.png',
 });
 var btn6 = Ti.UI.createButton({
-    top : 600,
-    right : 80,
-    height : 250,
-    width : 250,
+    top : '70%',
+    right : '10%',
+    height : 99,
+    width : 99,
     title : '',
     backgroundImage : 'qrcode_white.png',
 });
@@ -177,13 +178,20 @@ var btn6 = Ti.UI.createButton({
 
 btn1.addEventListener('click', function() {
     btn1.backgroundSelectedImage = 'auto_red.png';
-    win2.open();
+      
+   win2.open();
+      
 });
 btn2.addEventListener('click', function() {
     btn2.backgroundSelectedImage = 'moto_red.png';
 });
 btn3.addEventListener('click', function() {
     btn3.backgroundSelectedImage = 'scooter_red.png';
+        var newWindow = Titanium.UI.createWindow({
+        url: "soap.js",
+        title: "Soap Test"
+    });
+newWindow.open();
 });
 btn4.addEventListener('click', function() {
     btn4.backgroundSelectedImage = 'naked_red.png';
@@ -205,7 +213,7 @@ var picker;
 // Create a window to add the picker to and display it. 
 var scanWindow = Titanium.UI.createWindow({  
         title:'Scandit SDK',
-        navBarHidden:true
+        navBarHidden:false
 });
 // Sets up the scanner and starts it in a new window.
 var openScanner = function() {

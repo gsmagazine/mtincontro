@@ -1,0 +1,17 @@
+eclipse.preferences.version=1
+iosLaunchConfigurationAttributes/ATTR_MINIFY=true
+iosLaunchConfigurationAttributes/ATTR_PROJECT_NAME=motoincontroroma
+iosLaunchConfigurationAttributes/appid=it.motoincontroroma
+iosLaunchConfigurationAttributes/certificate=Nikla Ancona (575EZALYNS)
+iosLaunchConfigurationAttributes/keychain=
+iosLaunchConfigurationAttributes/sdk_version=7.0.3
+iosLaunchConfigurationAttributes/uuid=02A4C3D1-C2E1-48BD-A0A6-B2010BBAF208
+provisioning_profiles/development/02A4C3D1-C2E1-48BD-A0A6-B2010BBAF208/appid=*
+provisioning_profiles/development/02A4C3D1-C2E1-48BD-A0A6-B2010BBAF208/name=iOS Team Provisioning Profile\: *
+provisioning_profiles/development/02A4C3D1-C2E1-48BD-A0A6-B2010BBAF208/uuid=02A4C3D1-C2E1-48BD-A0A6-B2010BBAF208
+provisioning_profiles/development/2EAD7955-DE4F-4E8C-938E-4B991599F19E/appid=*
+provisioning_profiles/development/2EAD7955-DE4F-4E8C-938E-4B991599F19E/name=CameraIpadMini
+provisioning_profiles/development/2EAD7955-DE4F-4E8C-938E-4B991599F19E/uuid=2EAD7955-DE4F-4E8C-938E-4B991599F19E
+provisioning_profiles/development/F8C38A1D-1594-42D1-8E05-E19F012B5BB0/appid=pmi.cameraApp
+provisioning_profiles/development/F8C38A1D-1594-42D1-8E05-E19F012B5BB0/name=CameraIpadMini
+provisioning_profiles/development/F8C38A1D-1594-42D1-8E05-E19F012B5BB0/uuid=F8C38A1D-1594-42D1-8E05-E19F012B5BB0
