@@ -84,41 +84,7 @@ function createRow(items)
  
 }
 
-var l_data = [];
- 
-	var data = [
-		{id : -1, name1 : 'Column1' ,name2 : 'Column2',name3 : 'Column3' , type : 'header'},
-		{id : 1, name1 : 'Row1' ,name2 : 'Row1',name3 : 'Row1' , type : 'row'},
-		{id : 2, name1 : 'Row2' ,name2 : 'Row2',name3 : 'Row2', type : 'row'},
-		{id : 3, name1 : 'Row3' ,name2 : 'Row3',name3 : 'Row3', type : 'row'},
-		{id : 4, name1 : 'Row4' ,name2 : 'Row4',name3 : 'Row4', type : 'row'},
-	];
- 
-	for(var i=0;i<data.length;i++)
-	{
-		l_data.push(createRow(data[i]));
-	}
- 
-	tbl.setData(l_data);
-	
-	tbl.addEventListener('click', function(e) {
-		if(e.row.id > 0)
-		{
-			alert("Row id : " + e.row.id);
-		}
- 
-	});
-	var self = Ti.UI.createView();
 
-self.add(tbl);
-	
-	var win2 = Titanium.UI.createWindow({  
-    //title:'Tab 1',
-    backgroundColor:'#fff'
-	});
- win2.add(self);
-
-//END TABLEVIEW
 
 var btn1 = Ti.UI.createButton({
     top : '10%',
@@ -178,20 +144,31 @@ var btn6 = Ti.UI.createButton({
 
 btn1.addEventListener('click', function() {
     btn1.backgroundSelectedImage = 'auto_red.png';
-      
-   win2.open();
+    btn2.backgroundSelectedImage = 'moto_red.png';
+        var newWindow = Titanium.UI.createWindow({
+        url: "AutoList.js",
+        title: "Elenco Auto"       
+    });
+    newWindow.open();
       
 });
 btn2.addEventListener('click', function() {
     btn2.backgroundSelectedImage = 'moto_red.png';
+        var newWindow = Titanium.UI.createWindow({
+        url: "MotoList.js",
+        title: "Elenco Moto"       
+    });
+    newWindow.open();
 });
 btn3.addEventListener('click', function() {
     btn3.backgroundSelectedImage = 'scooter_red.png';
+    btn2.backgroundSelectedImage = 'moto_red.png';
         var newWindow = Titanium.UI.createWindow({
-        url: "soap.js",
-        title: "Soap Test"
+        url: "ScooterList.js",
+        title: "Elenco Scooter"       
     });
-newWindow.open();
+    newWindow.open();
+
 });
 btn4.addEventListener('click', function() {
     btn4.backgroundSelectedImage = 'naked_red.png';

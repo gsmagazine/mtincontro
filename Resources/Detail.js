@@ -13,8 +13,11 @@ var label = Ti.UI.createLabel({
 //define search bar to attach to tableview
 var searchBar = Ti.UI.createSearchBar({
     showCancel: true,
+    hidden:false,
     height: 80,
-    top: 10
+    top: 10,
+    //backgroundColor:'#FFF',
+    //softKeyboardOnFocus : Titanium.UI.Android.SOFT_KEYBOARD_DEFAULT_ON_FOCUS,
 });
  
 //print out searchbar value whenever it changes
@@ -49,8 +52,9 @@ var tblEmployees = Ti.UI.createTableView({
 window.add(tblEmployees);
 
 
-
-
+//tblEmployees.addEventListener('postlayout',  function(e){
+//    searchBar.blur();
+//});
 
 
 
@@ -85,21 +89,30 @@ if(Titanium.Network.networkType == Titanium.Network.NETWORK_NONE){
 try {
     suds.invoke('', '<ws:fullSearch>         <search></search>         <brandId></brandId>         <categoryIds>            <!--Zero or more repetitions:-->            <item>222</item>         </categoryIds>         <year></year>         <maxprice></maxprice>         <page></page>         <orderBy></orderBy>         <orderType></orderType>         <numRows></numRows>      </ws:fullSearch>', function(xmlDoc) {
 //get the item nodelist from response xml object
-    var items = xmlDoc.documentElement.getElementsByTagName("results");
+	var doc = xmlDoc.documentElement;
+    var items = doc.getElementsByTagName("results");
+    
+     		Ti.API.info('marca '+elements);
+     		
  
     //loop each item in the xml
     for (var i = 0; i < items.length; i++){
  		var motoID = items.item(i).getElementsByTagName("adId").item(0).textContent;
  		 var price = items.item(i).getElementsByTagName("publicPrice").item(0).textContent;
+ 		 var elements = items.item(i).getElementsByTagName("brand");
+ 		 var brands = elements.item(0).childNodes;
+ 		 var brand = brands.item(2).firstChild.textContent;
+		Ti.API.info('brand '+brand);
         //create a table row
         var row = Ti.UI.createTableViewRow({
             hasChild: true,
+            focusable:true,
          //height: Ti.UI.SIZE,
         //layout: 'vertical',
         width: Ti.UI.FILL,
             //className: 'employee-row',
             height:250,
-            filter: items.item(i).getElementsByTagName("title").item(0).textContent, 
+            filter: brand  + items.item(i).getElementsByTagName("title").item(0).textContent, 
         });
  		
  		var itemView = Ti.UI.createView({
@@ -110,20 +123,23 @@ try {
  		
         //title label
         var titleLabel = Ti.UI.createLabel({
-            text: items.item(i).getElementsByTagName("brand").item(0).getAttribute('id') +'\n'+ items.item(i).getElementsByTagName("model").item(0).textContent,
+            text: brand +'\n'+ items.item(i).getElementsByTagName("model").item(0).textContent,
             font: {fontSize: 40, fontWeight: 'bold'},
+            color:'#FFF',
             left: 0,
             top: 0,
+            
             //height: 60,
             //width: 500
         });
         //row.add(titleLabel);
         itemView.add(titleLabel);
- 		Ti.API.info('marca '+items.item(i).getElementsByTagName('brand').item(0).getAttribute('name'));
+
         //position label
         var positionLabel = Ti.UI.createLabel({
             text: 'Anno: ' +items.item(i).getElementsByTagName("year").item(0).textContent,
             font: {fontSize: 22, fontWeight: 'normal'},
+            color:'#FFF',
             left: 0,
             bottom: 15,
             //height: 200,
@@ -131,7 +147,8 @@ try {
         });
                 //position label
         var positionLabel2 = Ti.UI.createLabel({
-            text: 'Prezzo: ' + price.split(",") + '€',
+            text: 'Prezzo: ' + price.slice(0,-2) + '€',
+            color:'#FFF',
             font: {fontSize: 22, fontWeight: 'normal'},
             left: 200,
             bottom: 15,
@@ -171,7 +188,20 @@ try {
     Ti.API.error('Error: ' + e);
 }
 
+tblEmployees.addEventListener('click', function(e) {
+    if (Ti.Platform.name === 'android') {
+        // Clear search bar
+        searchBar.value ="";
+        // hiding and showing the search bar forces it back to its non-focused appearance.
+        searchBar.hide();
+        searchBar.show();
+    }else{
+    	
+    }
+});    
+
 window.open();
+//searchBar.hide();
 
 
 
