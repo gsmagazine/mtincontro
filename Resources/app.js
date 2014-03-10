@@ -252,12 +252,6 @@ Ti.Gesture.addEventListener('orientationchange', function(e) {
         // different than portrait.
     }
 });
-
-
-
- 
-
-
 win1.add(btn1);
 win1.add(btn2);
 win1.add(btn3);
