@@ -38,7 +38,7 @@ searchBar.addEventListener('cancel', function(e){
 
 
 //create the table view
-var tblData = Ti.UI.createTableView({
+var tblEmployees = Ti.UI.createTableView({
     height: Ti.UI.SIZE,
         //layout: 'vertical',
     width: Ti.UI.FILL,
@@ -49,10 +49,10 @@ var tblData = Ti.UI.createTableView({
     search: searchBar,
     filterAttribute: 'filter' //search filter which appears in TableRowView
 });
-window.add(tblData);
+window.add(tblEmployees);
 
 
-//tblData.addEventListener('postlayout',  function(e){
+//tblEmployees.addEventListener('postlayout',  function(e){
 //    searchBar.blur();
 //});
 
@@ -98,6 +98,7 @@ try {
     //loop each item in the xml
     for (var i = 0; i < items.length; i++){
  		var motoID = items.item(i).getElementsByTagName("adId").item(0).textContent;
+
  		 var price = items.item(i).getElementsByTagName("publicPrice").item(0).textContent;
  		 var elements = items.item(i).getElementsByTagName("brand");
  		 var brands = elements.item(0).childNodes;
@@ -113,8 +114,10 @@ try {
             //className: 'employee-row',
             height:250,
             filter: brand  + items.item(i).getElementsByTagName("title").item(0).textContent, 
+            url: 'Detail.js',
+            title: motoID,
         });
- 		row.pageTitle = motoID;
+ 		
  		var itemView = Ti.UI.createView({
  		left:0,	
  		 width: '50%',
@@ -170,22 +173,11 @@ try {
             //top: 10
         });
         row.add(iconImage);
- 	
- 	var actInd = Titanium.UI.createActivityIndicator({
-		top:12, 
-		height:16,
-		width:16,
-		left:300,
-		style:Titanium.UI.iPhone.ActivityIndicatorStyle.DARK
-	});
-		actInd.hide();
-		row.add(actInd);
- 
  
         //add the table row to our data[] object
 
         data.push(row);
-            tblData.data = data;
+            tblEmployees.data = data;
                     	Ti.API.info('row: ' + data.length);
  }
     } );
@@ -193,24 +185,23 @@ try {
 
  
     //set the data property of the tableView to the data[] object
-    //tblData.data = data;
+    //tblEmployees.data = data;
  
 } catch(e) {
     Ti.API.error('Error: ' + e);
 }
 
-
-tblData.addEventListener('click', function(e) { 
-	 var index = e.row.name; 
-	 Titanium.API.info("row index = "+ index +'-'+e.index + '-' + e.row.pageTitle); 
-        var newWindow = Titanium.UI.createWindow({ 
-            url:'detail.js',
-            title:e.rowData.title 
-        }); 
-        newWindow.open({
-            animated:true
-        });
+tblEmployees.addEventListener('click', function(e) {
+   var wndNewWindow = Ti.UI.createWindow({
+        //backgroundColor : '#999966',
+        url             : e.rowData.url,
+        title :e.rowData.title,
     });
+
+    wndNewWindow.open();
+});    
+
+
 
 window.open();
 //searchBar.hide();

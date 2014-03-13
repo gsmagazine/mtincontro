@@ -98,6 +98,7 @@ try {
     //loop each item in the xml
     for (var i = 0; i < items.length; i++){
  		var motoID = items.item(i).getElementsByTagName("adId").item(0).textContent;
+
  		 var price = items.item(i).getElementsByTagName("publicPrice").item(0).textContent;
  		 var elements = items.item(i).getElementsByTagName("brand");
  		 var brands = elements.item(0).childNodes;
@@ -113,6 +114,8 @@ try {
             //className: 'employee-row',
             height:250,
             filter: brand  + items.item(i).getElementsByTagName("title").item(0).textContent, 
+            url: 'Detail.js',
+            title: motoID,
         });
  		
  		var itemView = Ti.UI.createView({
@@ -189,16 +192,16 @@ try {
 }
 
 tblEmployees.addEventListener('click', function(e) {
-    if (Ti.Platform.name === 'android') {
-        // Clear search bar
-        searchBar.value ="";
-        // hiding and showing the search bar forces it back to its non-focused appearance.
-        searchBar.hide();
-        searchBar.show();
-    }else{
-    	
-    }
+   var wndNewWindow = Ti.UI.createWindow({
+        //backgroundColor : '#999966',
+        url             : e.rowData.url,
+        title :e.rowData.title,
+    });
+
+    wndNewWindow.open();
 });    
+
+
 
 window.open();
 //searchBar.hide();

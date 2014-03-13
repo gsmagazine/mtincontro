@@ -11,11 +11,19 @@ var win1 = Titanium.UI.createWindow({
     backgroundImage:'bg-content_portrait.jpg',
 });
 
+   var iconHeight = (((Titanium.Platform.displayCaps.platformHeight)*20)/100);
+   var iconWidht = (((Titanium.Platform.displayCaps.platformHeight)*20)/100);
+   
 Ti.Gesture.addEventListener('orientationchange', function(e) {
   if (e.orientation == Titanium.UI.LANDSCAPE_RIGHT || e.orientation == Titanium.UI.LANDSCAPE_LEFT) {
     win1.backgroundImage = "bg-content01.jpg";
+    return iconHeight = (((Titanium.Platform.displayCaps.platformHeight)*2)/100);
+    return iconWidht = (((Titanium.Platform.displayCaps.platformHeight)*2)/100);
+     
   } else {
     win1.backgroundImage = "bg-content_portrait.jpg";
+    return iconHeight = (((Titanium.Platform.displayCaps.platformHeight)*20)/100);
+    return iconWidht = (((Titanium.Platform.displayCaps.platformHeight)*20)/100);
   }
 });
 
@@ -89,48 +97,48 @@ function createRow(items)
 var btn1 = Ti.UI.createButton({
     top : '10%',
     left : '10%',
-    height : 99,
-    width : 99,
+    height : iconHeight,
+    width : iconWidht,
     title : '',
     backgroundImage : 'auto_white.png',
 });
 var btn2 = Ti.UI.createButton({
     top : '10%',
     right : '10%',
-    height : 99,
-    width : 99,
+    height : iconHeight,
+    width : iconWidht,
     title : '',
     backgroundImage : 'moto_white.png',
 });
 var btn3 = Ti.UI.createButton({
     top : '40%',
     left : '10%',
-    height : 99,
-    width : 99,
+    height : iconHeight,
+    width : iconWidht,
     title : '',
     backgroundImage : 'scooter_white.png',
 });
 var btn4 = Ti.UI.createButton({
     top : '40%',
     right : '10%',
-    height : 99,
-    width : 99,
+    height : iconHeight,
+    width : iconWidht,
     title : '',
     backgroundImage : 'naked_white.png',
 });
 var btn5 = Ti.UI.createButton({
     top : '70%',
     left : '10%',
-    height : 99,
-    width : 99,
+    height : iconHeight,
+    width : iconWidht,
     title : '',
     backgroundImage : 'qrcode_white.png',
 });
 var btn6 = Ti.UI.createButton({
     top : '70%',
     right : '10%',
-    height : 99,
-    width : 99,
+    height : iconHeight,
+    width : iconWidht,
     title : '',
     backgroundImage : 'qrcode_white.png',
 });

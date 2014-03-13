@@ -1,0 +1,10 @@
+android/ATTR_MINIFY=true
+android/ATTR_PROJECT_NAME=motoincontroroma
+android/abi=armeabi-v7a
+android/distribute_path=/Users/Administrator/Documents/Titanium_Studio_Workspace
+android/keystore_alias=innaas
+android/keystore_password=Colombo12
+android/keystore_path=/Users/Administrator/Documents/Titanium_Studio_Workspace/KeyStoreAndroid
+android/recent_output=/Users/Administrator/Documents/Titanium_Studio_Workspace
+android/sdk_version=4.4.2
+eclipse.preferences.version=1
